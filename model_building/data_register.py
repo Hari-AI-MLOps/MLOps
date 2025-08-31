@@ -18,8 +18,15 @@ except RepositoryNotFoundError:
     create_repo(repo_id=repo_id, repo_type=repo_type, private=False)
     print(f"Space '{repo_id}' created.")
 
+# Step 2: Check if the 'data' directory exists
+data_dir = "data"
+if not os.path.isdir(data_dir):
+    print(f"Error: The directory '{data_dir}' does not exist. Please create it and add your data files before running this script.")
+    exit(1)
+
+# Step 3: Upload the folder
 api.upload_folder(
-    folder_path="data",
+    folder_path=data_dir,
     repo_id=repo_id,
     repo_type=repo_type,
 )
